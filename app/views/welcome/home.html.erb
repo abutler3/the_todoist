@@ -31,7 +31,9 @@
 </head>
 
 <body>
-
+  <% flash.each do |type, msg| %>
+    <%= content_tag :p, msg, class: type %>
+  <% end %>
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
         <div class="container">
