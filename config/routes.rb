@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :todos
+  resources :todos do
+    member do
+      put :complete
+    end
+  end
 
   devise_for :users
   root 'welcome#home'

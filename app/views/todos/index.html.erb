@@ -5,7 +5,7 @@
     <tr>
       <th>Name</th>
       <th>Completed</th>
-      <th colspan="3"></th>
+      <th colspan="3">Actions</th>
     </tr>
   </thead>
 
@@ -25,3 +25,23 @@
 <br>
 
 <%= link_to 'New Todo', new_todo_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Completed</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @completes.each do |complete| %>
+      <tr>
+        <td><%= complete.name %></td>
+        <td><%= complete.completed %></td>
+        <td><%= link_to 'Show', complete_todo_path(complete), :method => :put %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

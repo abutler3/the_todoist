@@ -4,7 +4,8 @@ class TodosController < ApplicationController
   # GET /todos
   # GET /todos.json
   def index
-    @todos = Todo.all
+    @todos = Todo.where(completed: false)
+    @completes = Todo.where(completed: true)
   end
 
   # GET /todos/1
@@ -25,10 +26,11 @@ class TodosController < ApplicationController
   # POST /todos.json
   def create
     @todo = Todo.new(todo_params)
+    @todo.user = current_user
 
     respond_to do |format|
       if @todo.save
-        format.html { redirect_to @todo, notice: 'Todo was successfully created.' }
+        format.html { redirect_to todos_url, notice: 'Todo was successfully created.' }
         format.json { render :show, status: :created, location: @todo }
       else
         format.html { render :new }
@@ -37,19 +39,30 @@ class TodosController < ApplicationController
     end
   end
 
+  def complete
+    @todo = Todo.find(params[:id])
+    if @todo.update_attribute(:completed, true)
+      redirect_to todos_url, notice: 'Todo is complete.'
+    else
+      render "edit"
+    end
+  end
+
   # PATCH/PUT /todos/1
   # PATCH/PUT /todos/1.json
   def update
-    respond_to do |format|
-      if @todo.update(todo_params)
-        format.html { redirect_to @todo, notice: 'Todo was successfully updated.' }
-        format.json { render :show, status: :ok, location: @todo }
-      else
-        format.html { render :edit }
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
-      end
-    end
+    complete
+    # respond_to do |format|
+    #   if @todo.update(todo_params)
+    #     format.html { redirect_to todos_url, notice: 'Todo was successfully updated.' }
+    #     # format.json { render :show, status: :ok, location: @todo }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @todos.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
+
 
   # DELETE /todos/1
   # DELETE /todos/1.json
@@ -71,4 +84,5 @@ class TodosController < ApplicationController
     def todo_params
       params.require(:todo).permit(:name, :completed)
     end
+
 end
