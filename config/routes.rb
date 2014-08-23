@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :todos
+
   devise_for :users
   root 'welcome#home'
   # The priority is based upon order of creation: first created -> highest priority.
