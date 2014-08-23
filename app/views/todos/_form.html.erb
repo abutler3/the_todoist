@@ -1,14 +1,28 @@
-<%= simple_form_for(@todo) do |f| %>
-  <%= f.error_notification %>
+<%= form_for(@todo, html: { class: "form-horizontal"}) do |f| %>
+  <% if @todo.errors.any? %>
+    <div class="error_messages">
+      <h2><%= pluralize(@todo.errors.count, "error") %> prohibited this product from being saved:</h2>
 
-  <div class="form-inputs">
+      <ul>
+      <% @todo.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-    <%= f.input :name %>
+  <div class="field">
+
+    <%= f.label :name %><br>
+    <%= f.text_field :name, size: 150 %>
+  </div>
+
+  <div class="field">
     <%= f.label :completed %>
     <%= f.check_box :completed %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
   </div>
 <% end %>
