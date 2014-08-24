@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   private
   def set_default_role
-    self.role ||= Role.find_by_name('registered')
+    self.role ||= Role.find_by_admin('registered')
   end
 
 end
