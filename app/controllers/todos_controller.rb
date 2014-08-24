@@ -29,7 +29,7 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.save
-        format.html { redirect_to todos_url, notice: 'Todo was successfully created.' }
+        format.html { redirect_to todos_url }
         format.json { render :show, status: :created, location: @todo }
       else
         format.html { render :new }
@@ -41,7 +41,7 @@ class TodosController < ApplicationController
   def complete
     @todo = current_user.todos.find(params[:id])
     if @todo.update_attribute(:completed, true)
-      redirect_to todos_url, flash: 'Todo is complete.'
+      redirect_to todos_url
     else
       render "edit"
     end
@@ -68,7 +68,7 @@ class TodosController < ApplicationController
   def destroy
     @todo.destroy
     respond_to do |format|
-      format.html { redirect_to todos_url, notice: 'Todo was successfully destroyed.' }
+      format.html { redirect_to todos_url }
       format.json { head :no_content }
     end
   end
