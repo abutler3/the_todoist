@@ -42,3 +42,4 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'cancan'
 gem 'simple_form'
+gem 'rails_12factor', group: :production
