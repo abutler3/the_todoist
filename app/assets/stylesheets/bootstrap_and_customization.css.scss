@@ -1,6 +1,14 @@
 @import 'bootstrap';
 @import "bootstrap-sprockets";
 
+.checkbox input[type="checkbox"] {
+  margin-left: 0px;
+  margin: 0px;
+}
+
+.jumbotron {
+  background-color: #BBBBBB;
+}
 /*!
  * Start Bootstrap - The Big Picture HTML Template (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.
