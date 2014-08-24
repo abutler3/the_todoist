@@ -4,13 +4,14 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  ROLES = %w[admin moderator author banned]
-
   has_many :todos
   belongs_to :role
+  before_create :set_default_role
 
-  def is?(admin)
-    roles.include?(role.to_s)
-    # or just admin
+
+  private
+  def set_default_role
+    self.role ||= Role.find_by_name('registered')
   end
+
 end

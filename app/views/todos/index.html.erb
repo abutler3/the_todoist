@@ -12,7 +12,9 @@
         <td><%= todo.name %></td>
         <td><%= todo.completed %></td>
         <td><%= link_to 'Completed', complete_todo_path(todo), :method => :put, :class => 'btn btn-info' %></td>
-        <td><%= link_to 'Edit', edit_todo_path(todo), :class => 'btn btn-warning' %></td>
+        <% if current_user.try(:admin?) %>
+          <td><%= link_to 'Edit', edit_todo_path(todo), :class => 'btn btn-warning' %></td>
+        <% end %>
         <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
       </tr>
     <% end %>

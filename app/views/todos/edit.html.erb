@@ -1,6 +1,15 @@
+<% if current_user.try(:admin?) %>
+  <h1>Editing todo</h1>
+
+  <%= render 'form' %>
+
+  <%= link_to 'Show', @todo, class: "btn btn-link" %> |
+  <%= link_to 'Back', todos_path, class: "btn btn-link" %>
+
+<% else %>
 <h1>Editing todo</h1>
 
-<%= render 'form' %>
+<h2>This is not the todo you are looking for, is it?</h2>
+<p>Only admins can edit todos, even your own</p>
 
-<%= link_to 'Show', @todo, class: "btn btn-link" %> |
-<%= link_to 'Back', todos_path, class: "btn btn-link" %>
+<% end %>
