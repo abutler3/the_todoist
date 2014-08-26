@@ -27,9 +27,9 @@
 </head>
 
 <body>
-  <!-- <% flash.each do |type, msg| %>
-    <%= content_tag :p, msg, class: type %>
-  <% end %> -->
+<% flash.each do |type, msg| %>
+  <%= content_tag :p, msg, class: 'alert alert-success' %>
+<% end %>
     <!-- Navigation -->
     <%= render 'nav' %>
 
