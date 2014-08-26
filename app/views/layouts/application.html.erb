@@ -7,9 +7,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% flash.each do |type, msg| %>
-  <%= content_tag :p, msg, class: type %>
-<% end %>
 
 <%= render 'welcome/nav' %>
 

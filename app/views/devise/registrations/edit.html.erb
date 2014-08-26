@@ -22,8 +22,12 @@
     <!-- <div class="form-inputs">
       <%#= f.collection_select :roles, User::ROLES, :to_s, :humanize %>
     </div> -->
-
-
+    <div class="form-group">
+      <% if current_user.try(:admin?) %>
+        <%= f.label :admin, "Make user an admin" %>
+        <%= f.check_box :admin %>
+      <% end %>
+    </div>
     <div class="form-group">
       <%= f.button :submit, "Update", class: "btn btn-primary" %>
     </div>
